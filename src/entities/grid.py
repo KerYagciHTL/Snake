@@ -1,6 +1,6 @@
 import pygame
 from src.utils.config import MAX_CELL_SIZE
-from src.utils.color import GRAY
+from src.utils.color import WHITE
 
 
 class Grid:
@@ -9,7 +9,7 @@ class Grid:
         self.width = width
         self.height = height
         self.cell_size = cell_size
-        self.color = GRAY
+        self.color = WHITE
 
     def draw(self, screen):
         if self.cell_size > 0:
