@@ -1,9 +1,0 @@
-WIDTH = 800
-HEIGHT = 600
-TITLE = "Snake"
-
-FONT_SIZE = 48
-
-
-MAX_CELL_SIZE = 32
-
