@@ -36,6 +36,9 @@ class Game:
 
     def update(self, dt):
         self.player.update(dt)
+        if not self.player.alive:
+            self.running = False
+            print("Game Over!")
 
     def draw(self):
         self.screen.fill(BLACK)
