@@ -25,27 +25,29 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.running = False
-                elif event.key == pygame.K_UP or event.key == pygame.K_w:
-                    self.player.move(0, -1, WIDTH, HEIGHT)
-                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
-                    self.player.move(0, 1, WIDTH, HEIGHT)
-                elif event.key == pygame.K_LEFT or event.key == pygame.K_a:
-                    self.player.move(-1, 0, WIDTH, HEIGHT)
-                elif event.key == pygame.K_RIGHT or event.key == pygame.K_d:
-                    self.player.move(1, 0, WIDTH, HEIGHT)
+                elif event.key == pygame.K_w:
+                    self.player.set_direction(0, -1)
+                elif event.key == pygame.K_s:
+                    self.player.set_direction(0, 1)
+                elif event.key == pygame.K_a:
+                    self.player.set_direction(-1, 0)
+                elif event.key == pygame.K_d:
+                    self.player.set_direction(1, 0)
+
+    def update(self, dt):
+        self.player.update(dt)
 
     def draw(self):
         self.screen.fill(BLACK)
         self.grid.draw(self.screen)
         self.player.draw(self.screen)
-
         pygame.display.flip()
 
     def run(self):
         while self.running:
+            dt = self.clock.tick(60)
             self.handle_events()
+            self.update(dt)
             self.draw()
-            self.clock.tick(60)
 
         pygame.quit()
-
