@@ -17,6 +17,7 @@ class Game:
         self.player = Player(5, 5)
         self.text_surface = self.font.render("Hello, World!", True, WHITE)
         self.running = True
+        self.game_over = False
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -37,10 +38,20 @@ class Game:
     def update(self, dt):
         self.player.update(dt)
         if not self.player.alive:
-            self.running = False
-            print("Game Over!")
+            self.game_over = True
 
     def draw(self):
+        if self.game_over:
+            self.screen.fill(BLACK)
+            game_over_surface = self.font.render("Game Over!", True, WHITE)
+            self.screen.blit(
+                game_over_surface,
+                ((WIDTH - game_over_surface.get_width()) // 2,
+                 (HEIGHT - game_over_surface.get_height()) // 2)
+            )
+            pygame.display.flip()
+            return
+
         self.screen.fill(BLACK)
         self.grid.draw(self.screen)
         self.player.draw(self.screen)
