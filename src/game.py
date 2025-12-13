@@ -37,8 +37,7 @@ class Game:
 
     def update(self, dt):
         self.player.update(dt)
-        if not self.player.alive:
-            self.game_over = True
+        self.game_over = not self.player.alive
 
     def draw(self):
         if self.game_over:
