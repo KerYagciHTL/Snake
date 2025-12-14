@@ -26,13 +26,13 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     self.running = False
-                elif event.key == pygame.K_w:
+                elif event.key == pygame.K_w or event.key == pygame.K_UP:
                     self.player.set_direction(0, -1)
-                elif event.key == pygame.K_s:
+                elif event.key == pygame.K_s or event.key == pygame.K_DOWN:
                     self.player.set_direction(0, 1)
-                elif event.key == pygame.K_a:
+                elif event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     self.player.set_direction(-1, 0)
-                elif event.key == pygame.K_d:
+                elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     self.player.set_direction(1, 0)
 
     def update(self, dt):
