@@ -30,6 +30,9 @@ class Player:
             self.grid_x += self.direction[0]
             self.grid_y += self.direction[1]
 
+            if self.body:
+                self.body.insert(0, (self.grid_x - self.direction[0], self.grid_y - self.direction[1]))
+                self.body.pop()
 
             if self.grid_x < 0 or self.grid_x > self.max_grid_x or \
                     self.grid_y < 0 or self.grid_y > self.max_grid_y:
