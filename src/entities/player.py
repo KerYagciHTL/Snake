@@ -23,21 +23,24 @@ class Player:
     def update(self, dt):
         if not self.alive:
             return
-        if (self.grid_x, self.grid_y) in self.body:
-                self.alive = False
 
         self.move_timer += dt
         if self.move_timer >= self.move_delay:
             self.move_timer = 0
+
+            if self.body:
+                self.body.insert(0, (self.grid_x, self.grid_y))
+                self.body.pop()
+
             self.grid_x += self.direction[0]
             self.grid_y += self.direction[1]
 
-            if self.body:
-                self.body.insert(0, (self.grid_x - self.direction[0], self.grid_y - self.direction[1]))
-                self.body.pop()
+            if self.grid_x < 0 or self.grid_x >= self.max_grid_x or \
+                    self.grid_y < 0 or self.grid_y >= self.max_grid_y:
+                self.alive = False
+                return
 
-            elif self.grid_x < 0 or self.grid_x > self.max_grid_x or \
-                    self.grid_y < 0 or self.grid_y > self.max_grid_y:
+            if (self.grid_x, self.grid_y) in self.body:
                 self.alive = False
 
 
