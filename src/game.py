@@ -1,5 +1,3 @@
-import random
-
 import pygame
 from src.utils.config import WIDTH, HEIGHT, TITLE, FONT_SIZE
 from src.utils.color import BLACK, WHITE
@@ -21,7 +19,7 @@ class Game:
         self.text_surface = self.font.render("Hello, World!", True, WHITE)
         self.running = True
         self.game_over = False
-        self.food = Food(12, 15)
+        self.food = Food()
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -42,6 +40,9 @@ class Game:
     def update(self, dt):
         self.player.update(dt)
         self.game_over = not self.player.alive
+
+        if self.player.grid_x == self.food.grid_x and self.player.grid_y == self.food.grid_y:
+            self.food.randomize_position()
 
     def draw(self):
         if self.game_over:
