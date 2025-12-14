@@ -18,7 +18,7 @@ class TestGame:
     def test_game_stops_when_player_dies(self, game):
         game.player.alive = False
         game.update(0)
-        assert game.running is False
+        assert game.game_over is True
 
     def test_escape_key_stops_game(self, game):
         event = pygame.event.Event(pygame.KEYDOWN, key=pygame.K_ESCAPE)
