@@ -1,8 +1,11 @@
+import random
+
 import pygame
 from src.utils.config import WIDTH, HEIGHT, TITLE, FONT_SIZE
 from src.utils.color import BLACK, WHITE
 from src.entities.grid import Grid
 from src.entities.player import Player
+from src.entities.food import Food
 
 
 class Game:
@@ -18,6 +21,7 @@ class Game:
         self.text_surface = self.font.render("Hello, World!", True, WHITE)
         self.running = True
         self.game_over = False
+        self.food = Food(12, 15)
 
     def handle_events(self):
         for event in pygame.event.get():
@@ -54,6 +58,7 @@ class Game:
         self.screen.fill(BLACK)
         self.grid.draw(self.screen)
         self.player.draw(self.screen)
+        self.food.draw(self.screen)
         pygame.display.flip()
 
     def run(self):
