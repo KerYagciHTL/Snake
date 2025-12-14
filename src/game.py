@@ -1,5 +1,5 @@
 import pygame
-from src.utils.config import WIDTH, HEIGHT, TITLE, FONT_SIZE
+from src.utils.config import WIDTH, HEIGHT, TITLE, FONT_SIZE, TICK
 from src.utils.color import BLACK, WHITE
 from src.entities.grid import Grid
 from src.entities.player import Player
@@ -65,7 +65,7 @@ class Game:
 
     def run(self):
         while self.running:
-            dt = self.clock.tick(60)
+            dt = self.clock.tick(TICK)
             self.handle_events()
             self.update(dt)
             self.draw()
