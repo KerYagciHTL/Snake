@@ -12,13 +12,15 @@ class Player:
         self.grid_y = grid_y
         self.body = []
         self.direction = (1, 0)
+        self.next_direction = None
         self.move_timer = 0
         self.move_delay = 150
         self.alive = True
 
     def set_direction(self, dx, dy):
-        if (dx, dy) != (-self.direction[0], -self.direction[1]):
-            self.direction = (dx, dy)
+        current_dir = self.next_direction if self.next_direction else self.direction
+        if (dx, dy) != (-current_dir[0], -current_dir[1]):
+            self.next_direction = (dx, dy)
 
     def update(self, dt):
         if not self.alive:
@@ -27,6 +29,10 @@ class Player:
         self.move_timer += dt
         if self.move_timer >= self.move_delay:
             self.move_timer = 0
+
+            if self.next_direction:
+                self.direction = self.next_direction
+                self.next_direction = None
 
             if self.body:
                 self.body.insert(0, (self.grid_x, self.grid_y))

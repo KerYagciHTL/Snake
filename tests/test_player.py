@@ -13,7 +13,7 @@ class TestPlayer:
     def test_set_direction(self):
         player = Player(5, 5)
         player.set_direction(0, -1)
-        assert player.direction == (0, -1)
+        assert player.next_direction == (0, -1)
 
     def test_prevent_reverse_direction(self):
         player = Player(5, 5)

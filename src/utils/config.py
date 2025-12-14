@@ -5,4 +5,4 @@ TITLE = "Snake"
 FONT_SIZE = 48
 MAX_CELL_SIZE = 32
 
-TICK = 60
+TICK = 240
