@@ -5,8 +5,12 @@ from src.utils.color import GREEN
 
 class Player:
     def __init__(self, grid_x, grid_y):
+        self.max_grid_x = WIDTH // MAX_CELL_SIZE
+        self.max_grid_y = HEIGHT // MAX_CELL_SIZE
+
         self.grid_x = grid_x
         self.grid_y = grid_y
+        self.body = []
         self.direction = (1, 0)
         self.move_timer = 0
         self.move_delay = 150
@@ -26,12 +30,13 @@ class Player:
             self.grid_x += self.direction[0]
             self.grid_y += self.direction[1]
 
-            max_grid_x = WIDTH // MAX_CELL_SIZE
-            max_grid_y = HEIGHT // MAX_CELL_SIZE
 
-            if self.grid_x < 0 or self.grid_x > max_grid_x or \
-                    self.grid_y < 0 or self.grid_y > max_grid_y:
+            if self.grid_x < 0 or self.grid_x > self.max_grid_x or \
+                    self.grid_y < 0 or self.grid_y > self.max_grid_y:
                 self.alive = False
+
+    def add_body_segment(self):
+        self.body.append((self.grid_x, self.grid_y))
 
     def draw(self, screen):
         cell_size = MAX_CELL_SIZE
@@ -40,3 +45,11 @@ class Player:
             GREEN,
             (self.grid_x * cell_size, self.grid_y * cell_size, cell_size, cell_size)
         )
+        for segment in self.body:
+            pygame.draw.rect(
+                screen,
+                GREEN,
+                (segment[0] * cell_size, segment[1] * cell_size, cell_size, cell_size)
+            )
+
+

@@ -42,6 +42,7 @@ class Game:
         self.game_over = not self.player.alive
 
         if self.player.grid_x == self.food.grid_x and self.player.grid_y == self.food.grid_y:
+            self.player.add_body_segment()
             self.food.randomize_position()
 
     def draw(self):
