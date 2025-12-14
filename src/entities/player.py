@@ -29,8 +29,8 @@ class Player:
             max_grid_x = WIDTH // MAX_CELL_SIZE
             max_grid_y = HEIGHT // MAX_CELL_SIZE
 
-            if self.grid_x < 0 or self.grid_x >= max_grid_x or \
-                    self.grid_y < 0 or self.grid_y >= max_grid_y:
+            if self.grid_x < 0 or self.grid_x > max_grid_x or \
+                    self.grid_y < 0 or self.grid_y > max_grid_y:
                 self.alive = False
 
     def draw(self, screen):
