@@ -23,6 +23,8 @@ class Player:
     def update(self, dt):
         if not self.alive:
             return
+        if (self.grid_x, self.grid_y) in self.body:
+                self.alive = False
 
         self.move_timer += dt
         if self.move_timer >= self.move_delay:
@@ -34,12 +36,17 @@ class Player:
                 self.body.insert(0, (self.grid_x - self.direction[0], self.grid_y - self.direction[1]))
                 self.body.pop()
 
-            if self.grid_x < 0 or self.grid_x > self.max_grid_x or \
+            elif self.grid_x < 0 or self.grid_x > self.max_grid_x or \
                     self.grid_y < 0 or self.grid_y > self.max_grid_y:
                 self.alive = False
 
+
     def add_body_segment(self):
-        self.body.append((self.grid_x, self.grid_y))
+        if self.body:
+            tail_x, tail_y = self.body[-1]
+            self.body.append((tail_x, tail_y))
+        else:
+            self.body.append((self.grid_x - self.direction[0], self.grid_y - self.direction[1]))
 
     def draw(self, screen):
         cell_size = MAX_CELL_SIZE
